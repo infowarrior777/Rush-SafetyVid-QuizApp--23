@@ -25,4 +25,25 @@
       </span>
     </p>
   </form>
+
+      <div>
+        <div ng-hide="$ctrl.isLoggedIn()" ui-sref-active="active"><a ui-sref="login">You're not logged in. Login here.</a></div>
+        <div ng-show="$ctrl.isLoggedIn()">
+
+          <p>Hello {{ $ctrl.getCurrentUser().name }} you are logged in!</p> 
+
+          <br>
+
+          <p>Your are logged in as a {{ $ctrl.getCurrentUser().role }}, Welcome!</p> 
+
+
+        </div>
+        
+
+      </div>
+
+
+
+
+
 </div>

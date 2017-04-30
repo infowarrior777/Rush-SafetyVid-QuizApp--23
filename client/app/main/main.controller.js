@@ -4,10 +4,18 @@
 
   class MainController {
 
-    constructor($http, $scope, socket) {
+    constructor($http, $scope, socket, Auth) {
       this.$http = $http;
       this.socket = socket;
       this.awesomeThings = [];
+      
+      // added auth to constructor 4-29-17 Begin
+      this.isLoggedIn = Auth.isLoggedIn;
+      this.isAdmin = Auth.isAdmin;
+      this.isCoord = Auth.isCoord;
+      this.getCurrentUser = Auth.getCurrentUser;
+      // added auth to constructor 4-29-17 END
+
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');
@@ -39,6 +47,7 @@
   angular.module('helpdesk23App')
     .component('main', {
       templateUrl: 'app/main/main.html',
-      controller: MainController
+      controller: MainController,
+      // controllerAs: 'main',
     });
 })();

@@ -172,6 +172,15 @@
         return Auth.hasRole.apply(Auth, [].concat.apply(['admin'], arguments));
       },
 
+
+      // added role check for coordinators - check if a user is a coord - 4-29-17 
+
+
+      isCoord() {
+        return Auth.hasRole.apply(Auth, [].concat.apply(['coord'], arguments));
+      },
+
+
       /**
        * Get auth token
        *
