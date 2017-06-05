@@ -99,6 +99,79 @@ export function changePassword(req, res, next) {
     });
 }
 
+
+
+
+/**
+ * Change a users custom phone info added 5-1-17    
+ */
+export function changePhoneInfo(req, res, next) {
+   console.log('this is the req.body.phoneinfo', req.body.phoneinfo);
+  var userId = req.user._id;
+  var phoneinfo1 = req.body.phoneinfo;
+  console.log('this is the phoneinfo1', phoneinfo1);
+  // console.log('this is the req.body', req.body);
+  // var newPass = String(req.body.newPassword);
+
+  return User.findById(userId).exec()
+    .then(user => {
+      if (phoneinfo1) {
+        console.log('inside changePhoneInfo function before posting', phoneinfo1);
+        user.phoneinfo = phoneinfo1;
+        return user.save()
+          .then(() => {
+            console.log('Success, after posting', phoneinfo1);
+            res.status(204).end();
+          })
+          .catch(err => next(err));
+      } else {
+        return res.status(403).end();
+      }
+    });
+}
+
+
+//*************************************************************************
+
+// export function getcustomData(req, res, next) {
+//   var userId = req.user._id;
+//   // var oldPass = String(req.body.oldPassword);
+//   // var newPass = String(req.body.newPassword);
+
+//   return User.findById(userId).exec()
+//     .then(user => {
+//       if (user.authenticate(oldPass)) {
+//         user.password = newPass;
+//         return user.save()
+//           .then(() => {
+//             res.status(204).end();
+//           })
+//           .catch(validationError(res));
+//       } else {
+//         return res.status(403).end();
+//       }
+//     });
+// }
+
+
+
+export function showAll(req, res, next) {
+  var userId = req.params.id;
+
+  return User.findById(userId).exec()
+    .then(user => {
+      if (!user) {
+        return res.status(404).end();
+      }
+      res.json(user);
+    })
+    .catch(err => next(err));
+}
+
+//**************************************************************************
+
+
+
 /**
  * Get my info
  */

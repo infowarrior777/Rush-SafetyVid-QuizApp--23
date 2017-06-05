@@ -10,7 +10,11 @@ router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
+
+router.put('/:id/phoneinfo', auth.isAuthenticated(), controller.changePhoneInfo);  // added phoneinfo route 5-1-17
+
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+router.get('/:id/showAll', auth.isAuthenticated(), controller.showAll);
 
 module.exports = router;

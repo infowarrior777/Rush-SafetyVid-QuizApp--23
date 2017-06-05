@@ -3,35 +3,30 @@
 (function(){
 
 class SafetyquizComponent {
-  constructor() {
+  constructor(Auth, $scope) {
     this.message = 'Hello';
-  }
-}
-
-angular.module('helpdesk23App')
-  .component('safetyquiz', {
-    templateUrl: 'app/safetyquiz/safetyquiz.html',
-    controller: SafetyquizComponent,
-    controllerAs: 'safetyquizCtrl'
-  })
-
-  .controller('safetyquizCtrl', function ($scope,$user,$http) {
-    
-
-    $user.get()
-    .then(function (user) {
-
-      console.log('The current user is', user);
-      $scope.user = user;
-    })
-    .catch(function (error) {
-      console.log('Error getting user', error);
-    });
+    // added auth to constructor 4-29-17 Begin
+      this.isLoggedIn = Auth.isLoggedIn;
+      this.isAdmin = Auth.isAdmin;
+      this.isCoord = Auth.isCoord;
+      this.getCurrentUser = Auth.getCurrentUser;
+      // added auth to constructor 4-29-17 END
 
 
- //$scope.person = {}
+console.log('The current user is', this.getCurrentUser().name);
+console.log('Your role is', this.getCurrentUser().role);
+console.log('Your id # is', this.getCurrentUser()._id);
 
- 	$scope.person = {};
+
+
+
+
+//************************************************************
+
+
+//$scope.person = {}
+
+ 	// $scope.person = {};
 
     $scope.message = 'Hello';
     //$scope.answersBox = quiz.answersBox.value;
@@ -41,9 +36,12 @@ angular.module('helpdesk23App')
     //$scope. = []
 
 
+console.log('The person object is', $scope.person);
 
 
 
+
+//*******************
 
 // start addscore function
 
@@ -55,101 +53,66 @@ angular.module('helpdesk23App')
 
     $scope.safetyscore.push(quiz.answersBox.value);
     $scope.person = {
-    	name: $scope.user.fullName,
-    	lastfour: $scope.user.customData.lastfour,
+    	// name: userName,
+    	// role: userRole,
     	svidscore:  $scope.safetyscore[0]
     };
 
-console.log('The person object is', $scope.person);
+console.log('The person object is', $scope.person.svidscore);
 //console.log('the safety score', safetyscore[0]);
 
 
 
 
-/*
-
-$scope.user.customData.safetyvidscore = $scope.person.svidscore;
-
-$scope.user.customData.save();
-
-$user.customData.save();
-
-*/
+//***************************************************************
 
 
 
-/*
-function addsvid2stormpath(account, req, res, next) {
-    
-    
+// added function changePhoneInfo() to inside addscore() function in safetyquiz.controller.js file, to post safetyquiz score to user db
+function changePhoneInfo() {
+   
 
-    console.log('User:', account.email, 'New Safety Score is about to be saved to stormpath custom database');
-    
+    if ($scope.person) {
+      Auth.changePhoneInfo($scope.person)
+        .then(() => {
+          // var message = 'Added your safety video score successfully.';
+          console.log('Success! ADDED THE SVID SCORE TO USER', $scope.person);
 
-
-    account.getCustomData(function(err, customData){
-  customData.safetyvidscore = $scope.safetyscore[0];
-  customData.save(function(err){
-    if(!err) {
-      console.log('safetyvidscore was saved');
+        })
+        .catch(() => {
+          
+          console.log('error!!!!!! hmm... safety vid didnt make it past safetyquiz.controller.js');
+          // var errors.other = 'hmm... safety vid didnt make it past safetyquiz.controller.js';
+          // message = '';
+        });
     }
+  }
+
+
+
+
+changePhoneInfo();  // invoking changePhoneInfo
+
+
+}; // end of addscore function
+
+
+
+
+
+
+
+
+// **********************************************************************
+      
+  }
+}
+
+angular.module('helpdesk23App')
+  .component('safetyquiz', {
+    templateUrl: 'app/safetyquiz/safetyquiz.html',
+    controller: SafetyquizComponent,
+    controllerAs: 'safetyquizCtrl'
   });
-});
 
-
-
-    next();
-  };
-
-addsvid2stormpath();
-
-
-*/
-
-
-
-
-
-
-
-
-
-function genPDF(){
-
-  html2canvas(document.body, {
-    onrendered: function (canvas) {
-
-      var img = canvas.toDataURL("image/png");
-      var doc = new jsPDF('', 'mm', [canvas.width, canvas.height]);
-      doc.addImage(img,  'png', 0, 0, canvas.width, canvas.height);
-      doc.save('test.pdf');
-
-     } // closing onrendered function
-
-  }); // closing html2canvas 
-
-
-};   // closing genPDF function
-
-genPDF(); // invoking pdf generator function  
-
-
-
-
-    $http.post('/api/safetyresultss', $scope.person);
-
-    $http.post('/api/sendemails', $scope.person);
-    
-    /*$http.post('/api/sendemails', $scope.person);*/
-	
-
-};  // end of addscore function 
-
-
-
-    //stormpath.user.safetyvidresult = answersBox
-    console.log($scope.safetyscore)
-
-  }); // closing controller brackets
-
-})(); // closing and immediately invoking this function 
+})();

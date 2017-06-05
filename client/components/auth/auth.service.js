@@ -93,6 +93,22 @@
           .$promise;
       },
 
+       // added changephoneinfo function to auth.service.js 5-1-17 
+      changePhoneInfo(phoneinfo, callback) {
+        return User.changePhoneInfo({
+            id: currentUser._id
+          }, {
+            phoneinfo: phoneinfo
+            
+          }, function() {
+            return safeCb(callback)(null);
+          }, function(err) {
+            return safeCb(callback)(err);
+          })
+          .$promise;
+      },
+
+
       /**
        * Gets all available info on a user
        *   (synchronous|asynchronous)
@@ -173,7 +189,7 @@
       },
 
 
-      // added role check for coordinators - check if a user is a coord - 4-29-17 
+      // added role check for rush coordinators - check if a user is a coord - 4-29-17 
 
 
       isCoord() {

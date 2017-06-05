@@ -5,6 +5,8 @@ angular.module('helpdesk23App')
     $stateProvider
       .state('safetyquiz', {
         url: '/safetyquiz',
-        template: '<safetyquiz></safetyquiz>'
+        template: '<safetyquiz></safetyquiz>',
+        
+        // controllerAs: 'safetyquizCtrl'
       });
   });

@@ -9,18 +9,33 @@ const authTypes = ['github', 'twitter', 'facebook', 'google'];
 
 var UserSchema = new Schema({
   name: String,
-// added more to user shema 4-28-17 Begin
+// added more to user schema 4-28-17 Begin
   lastname: String,
   fullname: String,
   info: String,
   active: Boolean,
-  svidscore: String,
-  lastfour: String,
+  // svidscore: String,
+  lastfour: {
+    type: String,
+    default: '1234'                        // added default values for testing issues with controller 5-1-17
+  },
   typingtest: {
-    wpm: String,
-    errs: String,
-    accuracy: String,
-    time: String,
+    wpm: {
+    type: String,
+    default: 'No wpm yet' 
+  },
+    errs: {
+    type: String,
+    default: 'no errors yet'
+  },
+    accuracy: {
+    type: String,
+    default: 'no accuracy yet'
+  },
+    time: {
+    type: String,
+    default: 'no time yet'
+  },
 },
 
 phoneinfo: {
@@ -35,8 +50,12 @@ phoneinfo: {
       eempactuserpassword: String,
     },
     phonecomments: String,
+    svidscore: {                                   // moved svidscore inside phoneinfo for testing issues with controller 5-1-17
+    type: String,
+    default: 'No Score Yet'
+  },
 },
-// added more to user shema 4-28-17 End
+// added more to user schema 4-28-17 End
 
 
 
@@ -83,7 +102,9 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'role': this.role,
+      'svidscore': this.phoneinfo.svidscore,  // added these to test access to these properties in the model 5-1-17 
+      'phoneinfo': this.phoneinfo
     };
   });
 
