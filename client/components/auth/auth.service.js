@@ -197,6 +197,13 @@
       },
 
 
+      isAssociate() {
+        return Auth.hasRole.apply(Auth, [].concat.apply(['associate'], arguments));
+      },
+
+
+
+
       /**
        * Get auth token
        *

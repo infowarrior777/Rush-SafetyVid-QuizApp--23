@@ -14,6 +14,8 @@ class NavbarController {
     this.isLoggedIn = Auth.isLoggedIn;
     this.isAdmin = Auth.isAdmin;
     this.getCurrentUser = Auth.getCurrentUser;
+    this.isCoord = Auth.isCoord; // added isCoord check 6-7-17 
+    
   }
 
 }

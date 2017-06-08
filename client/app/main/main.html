@@ -11,12 +11,12 @@
     <div class="col-lg-12">
       <h1 class="page-header">Latest Job Openings:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in $ctrl.awesomeThings">
-        <li><a href="#" uib-tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
+        <li><a href="http://jobs.rush-personnel.com/index.smpl?arg=jb_search_results&view=0" uib-tooltip="{{thing.info}}">{{thing.name}}<button ng-show="$ctrl.isCoord()" type="button" class="close" ng-click="$ctrl.deleteThing(thing)">&times;</button></a></li>
       </ul>
     </div>
   </div>
 
-  <form class="thing-form">
+  <form ng-show="$ctrl.isCoord()" class="thing-form">
     <label>Since you're logged in as a Rush Coordinator you may Delete and Post Latest Job Openings. A Link will be created that takes them to a page to review job details and apply.</label>
     <p class="input-group">
       <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="$ctrl.newThing">
