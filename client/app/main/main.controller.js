@@ -12,10 +12,11 @@
       // added auth to constructor 4-29-17 Begin
       this.isLoggedIn = Auth.isLoggedIn;
       this.isAdmin = Auth.isAdmin;
-      this.isCoord = Auth.isCoord;
+      // this.isCoord = Auth.isCoord;
+      this.hasRole = Auth.hasRole;    // added has hasRole to check if coord on main.html
       this.getCurrentUser = Auth.getCurrentUser;
       // added auth to constructor 4-29-17 END
-
+      console.log(this.getCurrentUser);
 
       $scope.$on('$destroy', function() {
         socket.unsyncUpdates('thing');

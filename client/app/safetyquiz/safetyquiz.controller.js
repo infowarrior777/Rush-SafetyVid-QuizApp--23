@@ -105,8 +105,8 @@ changePhoneInfo();  // invoking changePhoneInfo
 
 // **********************************************************************
       
-  }
-}
+  } //closing constructor
+} //closing component 
 
 angular.module('helpdesk23App')
   .component('safetyquiz', {

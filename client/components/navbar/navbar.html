@@ -22,7 +22,7 @@
 
         <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="typingtest3">Typing Test</a></li>
 
-        <li ng-show="nav.isCoord()" ui-sref-active="active"><a ui-sref="timeoffreq">Time Off Request Form</a></li>
+        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="timeoffreq">Time Off Request Form</a></li>
 
 
 

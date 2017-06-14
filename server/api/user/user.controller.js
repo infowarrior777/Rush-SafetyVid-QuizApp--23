@@ -101,7 +101,7 @@ export function changePassword(req, res, next) {
 
 
 
-
+//*************************************************************************
 /**
  * Change a users custom phone info added 5-1-17    
  */
@@ -129,6 +129,83 @@ export function changePhoneInfo(req, res, next) {
       }
     });
 }
+
+
+
+
+//*************************************************************************
+/**
+ * Change a users role with a button click function added 6-10-17    
+ */
+export function changeRole(req, res, next) {
+   console.log('this is the req.body.role', req.body.role);
+  var userId = req.user._id;
+  var newrole1 = req.body.role;
+  console.log('this is the newrole1', newrole1);
+  // console.log('this is the req.body', req.body);
+  // var newPass = String(req.body.newPassword);
+
+  return User.findById(userId).exec()
+    .then(user => {
+      if (newrole1) {
+        console.log('inside changeRole function before posting', newrole1);
+        user.role = newrole1;
+        return user.save()
+          .then(() => {
+            console.log('Success, after posting', newrole1);
+            res.status(204).end();
+          })
+          .catch(err => next(err));
+      } else {
+        return res.status(403).end();
+      }
+    });
+}
+
+
+//*************************************************************************
+
+// added updateRole function to user.controller.js to change selected user to coord role 6-13-17
+// takes the id from the req.params from the auth.serve.js update role function and puts them into userID
+// and newrole1 and updates that selected user's role to coord
+
+
+export function updateRole(req, res, next) {
+   console.log('this is the req.body', req.body);
+   console.log('this is the req.body.user.role', req.body.role);
+   console.log('this is the req.body.user.id', req.user._id);
+   console.log('this is the req.params.id', req.params.id);
+  var userId = req.params.id;
+  var newrole1 = req.body.role;
+  console.log('this is the userId', userId);
+  console.log('this is the newrole1', newrole1);
+  // console.log('this is the req.body', req.body);
+  // var newPass = String(req.body.newPassword);
+
+  return User.findById(userId).exec()
+    .then(user => {
+      if (newrole1) {
+        console.log('inside changeRole function before posting', newrole1);
+        user.role = newrole1;
+        return user.save()
+          .then(() => {
+            console.log('Success, after posting', newrole1);
+            res.status(204).end();
+          })
+          .catch(err => next(err));
+      } else {
+        return res.status(403).end();
+      }
+    });
+}
+
+
+
+
+
+
+
+
 
 
 //*************************************************************************

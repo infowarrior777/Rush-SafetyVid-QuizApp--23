@@ -6,10 +6,12 @@
 	        <strong>{{user.name}}</strong><br>
 	        <span class="text-muted">{{user.email}}</span><br>
           <span class="text-muted">{{user.role}}</span>
+          <span class="text-muted">{{user._id}}</span>
            <span class="text-muted">{{user.phoneinfo}}</span>
             <span class="text-muted">{{user.phoneinfo.svidscore}}</span>
 
 	    </div>
+        <button type="button" class="btn btn-primary" ng-click="admin.updateRole(user,'coord')"><span class="fa fa-trash fa-2x"></span>Change user To Coord</button>
         <a ng-click="admin.delete(user)" class="trash"><span class="fa fa-trash fa-2x"></span>Delete</a>
     </li>
   </ul>

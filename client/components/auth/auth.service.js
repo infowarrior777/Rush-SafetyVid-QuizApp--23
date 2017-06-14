@@ -109,6 +109,41 @@
       },
 
 
+      // added changeRole to admin function for currently logged in user
+      // it turns currently loggedin user to admin added this function to auth.service.js 6-9-17 
+      
+      changeRole(newrole, callback) {
+        return User.changeRole({
+            id: currentUser._id
+          }, {
+            role: newrole
+            
+          }, function() {
+            return safeCb(callback)(null);
+          }, function(err) {
+            return safeCb(callback)(err);
+          })
+          .$promise;
+      },
+
+// added updateRole function to auth.service.js 6-11-17 
+      updateRole(user, newrole, callback) {
+        return User.updateRole({
+            id: user._id
+          }, {
+            role: newrole
+            
+          }, function() {
+            return safeCb(callback)(null);
+          }, function(err) {
+            return safeCb(callback)(err);
+          })
+          .$promise;
+      },
+
+
+
+
       /**
        * Gets all available info on a user
        *   (synchronous|asynchronous)

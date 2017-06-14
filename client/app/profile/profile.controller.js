@@ -10,6 +10,10 @@ class ProfileComponent {
       this.isLoggedIn = Auth.isLoggedIn;
       this.isAdmin = Auth.isAdmin;
       this.isCoord = Auth.isCoord;
+
+      this.changeRole = Auth.changeRole;
+
+
       this.getCurrentUser = Auth.getCurrentUser;
       this.users = User.get();
 
@@ -36,8 +40,65 @@ console.log('All users', this.users);
 
 
 
+// added changeRole function to admin.controller.js 6-9-17
+  //   changeRole(newrole, Auth) {
+   
+
+  //   if (newrole) {
+  //     Auth.changeRole(newrole)
+  //       .then(() => {
+  //         // var message = 'Added your safety video score successfully.';
+  //         console.log('Success! changed role to coord', $scope.person);
+
+  //       })
+  //       .catch(() => {
+          
+  //         console.log('error!!!!!! hmm... didnt change role from admin.controller.js');
+          
+  //         // message = '';
+  //       });
+  //   } // closing of newrole if statement
+  // } // closing of changeRole function
+
+// *************************************************************************************************
+
+
+
+
+
+
+
+
+
 
   }
+
+// added changeRole function to admin.controller.js 6-9-17
+    changeRole(newrole, Auth) {
+   
+
+    if (newrole) {
+      Auth.changeRole(newrole)
+        .then(() => {
+          // var message = 'Added your safety video score successfully.';
+          console.log('Success! changed role to coord', $scope.person);
+
+        })
+        .catch(() => {
+          
+          console.log('error!!!!!! hmm... didnt change role from admin.controller.js');
+          
+          // message = '';
+        });
+    } // closing of newrole if statement
+  } // closing of changeRole function
+
+// *************************************************************************************************
+
+
+
+
+  
 }
 
 angular.module('helpdesk23App')

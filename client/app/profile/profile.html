@@ -11,3 +11,18 @@
 
 
 <div>phoneinfo {{ profileCtrl.getCurrentUser().phoneinfo }}</div>
+
+
+
+<div>Your Typing test score words per minutes are: {{ profileCtrl.getCurrentUser().typingtest.wpm }}</div>
+
+<div>Your Typing test score errors are: {{ profileCtrl.getCurrentUser().typingtest.errs }}</div>
+
+<div>Your Typing test score accuracy are: {{ profileCtrl.getCurrentUser().typingtest.accuracy }}</div>
+
+<div>Your Typing test score time of test was: {{ profileCtrl.getCurrentUser().typingtest.time }}</div>
+
+
+
+
+<button type="button" class="btn btn-primary" ng-click="profileCtrl.changeRole('admin')"><span class="fa fa-trash fa-2x"></span>Change To Coord</button>
