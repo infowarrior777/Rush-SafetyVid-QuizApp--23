@@ -37,8 +37,14 @@ console.log('Your id # is', this.getCurrentUser()._id);
 
     $scope.addscore = function(){
     
-    
+
     $scope.person = [{}];
+    $scope.typingtest = []	
+
+
+
+    //  $scope.person = {};
+    // $scope.typingtest = {};
     $scope.wpm = [];
     $scope.errors = [];
     $scope.accuracy = [];
@@ -50,7 +56,7 @@ console.log('Your id # is', this.getCurrentUser()._id);
     $scope.accuracy.push(tscore.innerText);
     $scope.time.push(tTT.innerText);
     
-    $scope.person = {
+    $scope.typingtest = {
  
     	wpm:      $scope.wpm[0],
     	errs:   $scope.errors[0],
@@ -58,8 +64,12 @@ console.log('Your id # is', this.getCurrentUser()._id);
     	time:     $scope.time[0]
     };
 
+$scope.person = {
+	typingtest: $scope.typingtest
+};
  
-console.log('The person object is', $scope.person);
+console.log('The person object from typingtest3.controller.js is', $scope.person);
+console.log('The person.typingtest object from the typingtest3.controller.js is', $scope.person.typingtest);
 
 
 
@@ -79,12 +89,12 @@ function changePhoneInfo() {
       Auth.changePhoneInfo($scope.person)
         .then(() => {
           // var message = 'Added your safety video score successfully.';
-          console.log('Success! ADDED THE SVID SCORE TO USER', $scope.person);
+          console.log('Success! SENT THE TYPINGTEST SCORE TO auth.service.js service', $scope.person);
 
         })
         .catch(() => {
           
-          console.log('error!!!!!! hmm... safety vid didnt make it past safetyquiz.controller.js');
+          console.log('error!!!!!! hmm... typingtest didnt make it past typingtest3.controller.js');
           // var errors.other = 'hmm... safety vid didnt make it past safetyquiz.controller.js';
           // message = '';
         });

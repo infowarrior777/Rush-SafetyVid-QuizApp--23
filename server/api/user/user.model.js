@@ -19,24 +19,24 @@ var UserSchema = new Schema({
     type: String,
     default: '1234'                        // added default values for testing issues with controller 5-1-17
   },
-  typingtest: {
-    wpm: {
-    type: String,
-    default: 'No wpm yet' 
-  },
-    errs: {
-    type: String,
-    default: 'no errors yet'
-  },
-    accuracy: {
-    type: String,
-    default: 'no accuracy yet'
-  },
-    time: {
-    type: String,
-    default: 'no time yet'
-  },
-},
+//   typingtest: {
+//     wpm: {
+//     type: String,
+//     default: 'No wpm yet' 
+//   },
+//     errs: {
+//     type: String,
+//     default: 'no errors yet'
+//   },
+//     accuracy: {
+//     type: String,
+//     default: 'no accuracy yet'
+//   },
+//     time: {
+//     type: String,
+//     default: 'no time yet'
+//   },
+// },
 
 phoneinfo: {
     model: String,
@@ -49,11 +49,29 @@ phoneinfo: {
       eempactusername: String,
       eempactuserpassword: String,
     },
-    phonecomments: String,
-    svidscore: {                                   // moved svidscore inside phoneinfo for testing issues with controller 5-1-17
-    type: String,
-    default: 'No Score Yet'
+    typingtest: {
+     wpm: {
+      type: String,
+      default: 'No wpm yet' 
   },
+     errs: {
+      type: String,
+      default: 'no errors yet'
+  },
+     accuracy: {
+      type: String,
+      default: 'no accuracy yet'
+  },
+     time: {
+      type: String,
+      default: 'no time yet'
+  },
+}, //    moved typing test object into the phoneinfo object to post this data using the already built routes
+    phonecomments: String,
+    svidscore: {                  // moved svidscore inside phoneinfo for
+     type: String,                // testing issues with controller and 
+     default: 'No Score Yet'     // to post this data using the already
+  },                           // built routes and controllers 5-1-17
 },
 // added more to user schema 4-28-17 End
 
