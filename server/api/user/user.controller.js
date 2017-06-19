@@ -117,7 +117,9 @@ export function changePhoneInfo(req, res, next) {
     .then(user => {
       if (phoneinfo1) {
         console.log('inside changePhoneInfo function before posting', phoneinfo1);
-        user.phoneinfo = phoneinfo1;
+        user.phoneinfo.svidscore = phoneinfo1.svidscore || user.phoneinfo.svidscore;
+        user.phoneinfo.typingtest = phoneinfo1.typingtest || user.phoneinfo.typingtest;
+        // added logical operators to phoneinfo data model to keep it from overwrighting other data 6-18-17 
         return user.save()
           .then(() => {
             console.log('Success, after posting', phoneinfo1);

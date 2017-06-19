@@ -1,27 +1,38 @@
 <div>Hello {{ profileCtrl.getCurrentUser().name }}</div>
-
+<br>
+<br>
 
 
 <div>Your role is {{ profileCtrl.getCurrentUser().role }}</div>
-
+<br>
 <div>Your ID # is {{ profileCtrl.getCurrentUser()._id }}</div>
+<br>
+<br>
 
 
-<div>phoneinfo.svidscore {{ profileCtrl.getCurrentUser().phoneinfo.svidscore }}</div>
-
-
-<div>the profileCtrl.getCurrentUser().phoneinfo is {{ profileCtrl.getCurrentUser().phoneinfo }}</div>
-
+<div>Your Safety Video Quiz score is:<br>
+<br>
+ {{ profileCtrl.getCurrentUser().phoneinfo.svidscore }}</div>
+<br>
+<br>
+<br>
+<!-- <div>the profileCtrl.getCurrentUser().phoneinfo is {{ profileCtrl.getCurrentUser().phoneinfo }}</div> -->
+<br>
+<br>
+<br>
 
 
 <div>Your Typing test score words per minutes are: {{ profileCtrl.getCurrentUser().phoneinfo.typingtest.wpm }}</div>
-
+<br>
 <div>Your Typing test score errors are: {{ profileCtrl.getCurrentUser().phoneinfo.typingtest.errs }}</div>
-
+<br>
 <div>Your Typing test score accuracy are: {{ profileCtrl.getCurrentUser().phoneinfo.typingtest.accuracy }}</div>
-
+<br>
 <div>Your Typing test score time of test was: {{ profileCtrl.getCurrentUser().phoneinfo.typingtest.time }}</div>
-
+<br>
+<br>
+<br>
+<br>
 
 
 

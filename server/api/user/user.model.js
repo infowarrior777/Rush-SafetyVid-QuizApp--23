@@ -66,13 +66,22 @@ phoneinfo: {
       type: String,
       default: 'no time yet'
   },
-}, //    moved typing test object into the phoneinfo object to post this data using the already built routes
+}, // closing typing test object here. moved typing test object into the phoneinfo object to post this data using the already built routes
     phonecomments: String,
-    svidscore: {                  // moved svidscore inside phoneinfo for
-     type: String,                // testing issues with controller and 
-     default: 'No Score Yet'     // to post this data using the already
-  },                           // built routes and controllers 5-1-17
-},
+    svidscore: {                                // moved svidscore inside phoneinfo for
+     type: String,                             // testing issues with controller and 
+     default: 'No Score Yet'                  // to post this data using the already
+  },  //closing bracket for svidscore object // built routes and controllers 5-1-17
+},  // closing phoneinfo bracket 
+
+
+
+
+
+
+
+
+
 // added more to user schema 4-28-17 End
 
 
